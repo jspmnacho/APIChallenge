@@ -1,3 +1,5 @@
+import Body.CreateBodyBuilder;
+import Body.MainBody;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
@@ -12,6 +14,7 @@ public class Validate extends Url{
     private String request_token;
     private String api_key;
     private String session_id;
+    Data data = new Data();
 
     public Validate() {
         super();
@@ -57,6 +60,17 @@ public class Validate extends Url{
         this.session_id = session_id;
     }
 
+    @Override
+    public String toString() {
+        return "{" +
+                "\"username\":" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", request_token='" + request_token + '\'' +
+                ", api_key='" + api_key + '\'' +
+                ", session_id='" + session_id + '\'' +
+                '}';
+    }
+
     public void Token(){
         RequestToken requestToken = new RequestToken();
         requestToken.generarToken();
@@ -64,27 +78,27 @@ public class Validate extends Url{
     }
 
     public void ValidateToken(){
-        Url url = new Url();
-        Data data = new Data();
         Token();
         setApi_key(data.getApi_key());
         setUsername(data.getUsername());
         setPassword(data.getPass());
-        String value = url.getUrlValidateToken()+getApi_key();
-        String body = "{\"username\": \""+getUsername()
+        CreateBodyBuilder builder = new CreateBodyBuilder(getRequest_token());
+        MainBody bodyBuilder = builder.username(data.getUsername())
+                .password(data.getPass())
+                .build();
+        String value = getUrlValidateToken()+getApi_key();
+        String body = "{\"username\": \""+bodyBuilder.getUsername()
                 +"\",\"password\": \""
-                +getPassword()+"\",\"request_token\":\""
-                +getRequest_token()+"\"}";
+                +bodyBuilder.getPassword()+"\",\"request_token\":\""
+                +bodyBuilder.getRequest_token()+"\"}";
         Response response = (Response) given().contentType(ContentType.JSON).body(body).when()
                 .post(value).then().statusCode(200).extract().response();
 
     }
 
     public void CreateSession() {
-        Url url = new Url();
-        Data data = new Data();
         setApi_key(data.getApi_key());
-        String value = url.getUrlCreateSession()+ getApi_key();
+        String value = getUrlCreateSession()+ getApi_key();
         ValidateToken();
         String body = "{\"request_token\": \""+getRequest_token()+"\"}";
         Response response = (Response) given().contentType(ContentType.JSON).body(body).when()
@@ -95,11 +109,9 @@ public class Validate extends Url{
   }
 
     public void CreateList() {
-        Url url = new Url();
-        Data data = new Data();
         setApi_key(data.getApi_key());
         CreateSession();
-        String value = url.getUrlCreateList1()+getApi_key()+url.getUrlCreateList2()+getSession_id();
+        String value = getUrlCreateList1()+getApi_key()+getUrlCreateList2()+getSession_id();
         String body = "{\"name\": \"Test_5\",\"description\": \"Descripcion_5\",\"language\": \"en\"}";
         Response response = (Response) given().contentType(ContentType.JSON).body(body).when()
                 .post(value).then().statusCode(201).extract().response();
