@@ -7,15 +7,16 @@ public abstract class Url {
     private String urlCreateSession;
     private String urlCreateList1;
     private String urlCreateList2;
+    Data data = new Data();
 
 
     public Url() {
-        RestAssured.baseURI = "https://api.themoviedb.org/3";
-        setUrlToken("/authentication/token/new?api_key=");
-        setUrlValidateToken("/authentication/token/validate_with_login?api_key=");
-        setUrlCreateSession("/authentication/session/new?api_key=");
-        setUrlCreateList1("/list?api_key=");
-        setUrlCreateList2("&session_id=");
+        RestAssured.baseURI = data.getUrlMain();
+        setUrlToken(data.getUrlToken());
+        setUrlValidateToken(data.getUrlValidateToken());
+        setUrlCreateSession(data.getUrlCreateSession());
+        setUrlCreateList1(data.getUrlCreateList1());
+        setUrlCreateList2(data.getUrlCreateList2());
     }
 
     public String getUrlToken() {
