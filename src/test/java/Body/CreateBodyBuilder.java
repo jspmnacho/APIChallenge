@@ -39,17 +39,17 @@ public class CreateBodyBuilder implements BodyBuilder {
     }
 
     public CreateBodyBuilder nameList(String val) {
-        username = val;
+        nameList = val;
         return this;
     }
 
     public CreateBodyBuilder descriptionList(String val) {
-        username = val;
+        descriptionList = val;
         return this;
     }
 
     public CreateBodyBuilder lenguajeList(String val) {
-        username = val;
+        lenguajeList = val;
         return this;
     }
 
@@ -83,9 +83,9 @@ public class CreateBodyBuilder implements BodyBuilder {
 
             case "CreateList":
                 setSolicitudBody(
-                        "{\"name\": \""+ build().getNameList()+
-                        "\",\"description\": \""+build().getDescriptionList()+
-                        "\",\"language\": \""+build().getLenguajeList()+"\"}");
+                        "{\"name\":\""+ build().getNameList()+
+                        "\",\"description\":\""+build().getDescriptionList()+
+                        "\",\"language\":\""+build().getLenguajeList()+"\"}");
                 break;
 
             default: {

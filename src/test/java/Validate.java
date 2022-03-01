@@ -15,6 +15,7 @@ public class Validate extends Url{
     private String api_key;
     private String session_id;
     Data data = new Data();
+    CreateBodyBuilder builder = new CreateBodyBuilder(getRequest_token());
 
     public Validate() {
         super();
@@ -71,10 +72,9 @@ public class Validate extends Url{
         setApi_key(data.getApi_key());
         setUsername(data.getUsername());
         setPassword(data.getPass());
-        CreateBodyBuilder builder = new CreateBodyBuilder(getRequest_token());
-        MainBody bodyBuilder = builder.username(data.getUsername())
-                .password(data.getPass())
-                .build();
+        builder.username(data.getUsername())
+               .password(data.getPass())
+               .build();
         builder.prametersBody("ValidateToken");
         String body = builder.getSolicitudBody();
         String value = getUrlValidateToken()+getApi_key();
@@ -87,8 +87,7 @@ public class Validate extends Url{
         setApi_key(data.getApi_key());
         String value = getUrlCreateSession()+ getApi_key();
         ValidateToken();
-        CreateBodyBuilder builder = new CreateBodyBuilder(getRequest_token());
-        MainBody bodyBuilder = builder.build();
+        builder.build();
         builder.prametersBody("CreateSession");
         String body = builder.getSolicitudBody();
         Response response = (Response) given().contentType(ContentType.JSON).body(body).when()
@@ -102,8 +101,8 @@ public class Validate extends Url{
         setApi_key(data.getApi_key());
         CreateSession();
         String value = getUrlCreateList1()+getApi_key()+getUrlCreateList2()+getSession_id();
-        CreateBodyBuilder builder = new CreateBodyBuilder(getRequest_token());
-        MainBody bodyBuilder = builder.nameList(data.getNameList())
+        System.out.println(data.getNameList()+data.getDescription()+data.getLanguage());
+        builder.nameList(data.getNameList())
                 .descriptionList(data.getDescription())
                 .lenguajeList(data.getLanguage())
                 .build();
