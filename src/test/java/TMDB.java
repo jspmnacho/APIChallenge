@@ -9,6 +9,7 @@ public class TMDB {
     @Test
     public void getRequestToken(){
         RequestToken requestToken = new RequestToken();
+        requestToken.generarToken();
         System.out.println(requestToken.getToken());
     }
 
@@ -20,14 +21,15 @@ public class TMDB {
 
     @Test
     public void postCreateSession(){
-        Validate validateToken = new Validate();
-        validateToken.CreateSession();
+        Validate createSession = new Validate();
+        createSession.CreateSession();
+        System.out.println(createSession.getSession_id());
     }
-/*
+
     @Test
     public void postCreateList(){
         Validate validateToken = new Validate();
         validateToken.CreateList();
     }
-*/
+
 }

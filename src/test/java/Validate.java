@@ -17,13 +17,6 @@ public class Validate extends Url{
         super();
     }
 
-    public String Token(){
-        String token = "";
-        RequestToken requestToken = new RequestToken();
-        requestToken.generarToken();
-        return token = requestToken.getToken();
-    }
-
     public String getUsername() {
         return username;
     }
@@ -64,48 +57,53 @@ public class Validate extends Url{
         this.session_id = session_id;
     }
 
+    public void Token(){
+        RequestToken requestToken = new RequestToken();
+        requestToken.generarToken();
+        setRequest_token(requestToken.getToken());
+    }
+
     public void ValidateToken(){
         Url url = new Url();
         Data data = new Data();
+        Token();
         setApi_key(data.getApi_key());
         setUsername(data.getUsername());
         setPassword(data.getPass());
-        String value = url.getUrlValidateToken();
-        setRequest_token(Token());
-        String request = "{\"username\": \""+getUsername()+"\",\"password\": \""+getPassword()+"\",\"request_token\":\""+getRequest_token()+"\"}";
-        given().contentType("application/json").body(request).when().post(value+getApi_key()).then().log().body().and().statusCode(200);
+        String value = url.getUrlValidateToken()+getApi_key();
+        String body = "{\"username\": \""+getUsername()
+                +"\",\"password\": \""
+                +getPassword()+"\",\"request_token\":\""
+                +getRequest_token()+"\"}";
+        Response response = (Response) given().contentType(ContentType.JSON).body(body).when()
+                .post(value).then().statusCode(200).extract().response();
+
     }
 
-    public String CreateSession() {
-        String session = "";
+    public void CreateSession() {
         Url url = new Url();
         Data data = new Data();
         setApi_key(data.getApi_key());
-        String value = url.getUrlCreateSession();
-        //setRequest_token(Token());
-        String body = "{\"request_token\": \"d29948e7532e54a15ee25a60d9b3f143c5b9d92c\"}";
-        //given().contentType("application/json").body(body).when().post(value+getApi_key()).then().log().body().and().statusCode(200);
+        String value = url.getUrlCreateSession()+ getApi_key();
+        ValidateToken();
+        String body = "{\"request_token\": \""+getRequest_token()+"\"}";
         Response response = (Response) given().contentType(ContentType.JSON).body(body).when()
-                .post(value + getApi_key()).then().statusCode(200).extract().response();
-        System.out.println(response.getBody().prettyPrint());
-        return session = response.jsonPath().getString("session_id");
+                .post(value).then().statusCode(200).extract().response();
+        //System.out.println(response.getBody().prettyPrint());
+        setSession_id(response.jsonPath().getString("session_id"));
 
   }
-/*
+
     public void CreateList() {
         Url url = new Url();
         Data data = new Data();
         setApi_key(data.getApi_key());
-        String session = CreateSession();
-        System.out.println(session);
-        String value1 = url.getUrlCreateList1();
-        String value2 = url.getUrlCreateList2();
-        String body = "{\"name\": \"Test_2\",\"description2\": \"algo random\",\"language\": \"en\"}";
-        //given().contentType("application/json").body(body).when().post(value1+getApi_key()+value2+getSession_id())
-        //        .then().log().body().and().statusCode(200);
-        given().contentType("application/json").body(body).when()
-                .post("/list?api_key="+getApi_key()+"&session_id="+session).then()
-                .log().body().and().statusCode(200);
+        CreateSession();
+        String value = url.getUrlCreateList1()+getApi_key()+url.getUrlCreateList2()+getSession_id();
+        String body = "{\"name\": \"Test_5\",\"description\": \"Descripcion_5\",\"language\": \"en\"}";
+        Response response = (Response) given().contentType(ContentType.JSON).body(body).when()
+                .post(value).then().statusCode(201).extract().response();
+        //System.out.println(response.getBody().prettyPrint());
+
     }
-*/
 }

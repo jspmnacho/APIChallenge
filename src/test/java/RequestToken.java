@@ -20,7 +20,6 @@ public class RequestToken extends Url{
     }
 
     public String getToken() {
-        generarToken();
         return token;
     }
 
@@ -32,8 +31,8 @@ public class RequestToken extends Url{
         Url url = new Url();
         Data data = new Data();
         setApi_key(data.getApi_key());
-        String value = url.getUrlToken();
-        ValidatableResponse response = given().when().get(value+getApi_key()).then().log().body()
+        String value = url.getUrlToken()+getApi_key();
+        ValidatableResponse response = given().when().get(value).then().log().body()
                 .and().statusCode(200);
         String token = response.extract().jsonPath().getString("request_token");
         setToken(token);
