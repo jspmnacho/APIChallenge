@@ -1,6 +1,6 @@
 import io.restassured.RestAssured;
 
-public class Url {
+public abstract class Url {
 
     private String urlToken;
     private String urlValidateToken;
@@ -11,18 +11,18 @@ public class Url {
 
     public Url() {
         RestAssured.baseURI = "https://api.themoviedb.org/3";
-        urlToken = "/authentication/token/new?api_key=";
-        urlValidateToken = "/authentication/token/validate_with_login?api_key=";
-        urlCreateSession = "/authentication/session/new?api_key=";
-        urlCreateList1 = "/list?api_key=";
-        urlCreateList2 ="&session_id=";
+        setUrlToken("/authentication/token/new?api_key=");
+        setUrlValidateToken("/authentication/token/validate_with_login?api_key=");
+        setUrlCreateSession("/authentication/session/new?api_key=");
+        setUrlCreateList1("/list?api_key=");
+        setUrlCreateList2("&session_id=");
     }
 
     public String getUrlToken() {
         return urlToken;
     }
 
-    public void setUrlToken() {
+    public void setUrlToken(String urlToken) {
         this.urlToken = urlToken;
     }
 
