@@ -60,17 +60,6 @@ public class Validate extends Url{
         this.session_id = session_id;
     }
 
-    @Override
-    public String toString() {
-        return "{" +
-                "\"username\":" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", request_token='" + request_token + '\'' +
-                ", api_key='" + api_key + '\'' +
-                ", session_id='" + session_id + '\'' +
-                '}';
-    }
-
     public void Token(){
         RequestToken requestToken = new RequestToken();
         requestToken.generarToken();
@@ -86,11 +75,9 @@ public class Validate extends Url{
         MainBody bodyBuilder = builder.username(data.getUsername())
                 .password(data.getPass())
                 .build();
+        builder.prametersBody("ValidateToken");
+        String body = builder.getSolicitudBody();
         String value = getUrlValidateToken()+getApi_key();
-        String body = "{\"username\": \""+bodyBuilder.getUsername()
-                +"\",\"password\": \""
-                +bodyBuilder.getPassword()+"\",\"request_token\":\""
-                +bodyBuilder.getRequest_token()+"\"}";
         Response response = (Response) given().contentType(ContentType.JSON).body(body).when()
                 .post(value).then().statusCode(200).extract().response();
 
@@ -100,7 +87,10 @@ public class Validate extends Url{
         setApi_key(data.getApi_key());
         String value = getUrlCreateSession()+ getApi_key();
         ValidateToken();
-        String body = "{\"request_token\": \""+getRequest_token()+"\"}";
+        CreateBodyBuilder builder = new CreateBodyBuilder(getRequest_token());
+        MainBody bodyBuilder = builder.build();
+        builder.prametersBody("CreateSession");
+        String body = builder.getSolicitudBody();
         Response response = (Response) given().contentType(ContentType.JSON).body(body).when()
                 .post(value).then().statusCode(200).extract().response();
         //System.out.println(response.getBody().prettyPrint());
@@ -112,7 +102,13 @@ public class Validate extends Url{
         setApi_key(data.getApi_key());
         CreateSession();
         String value = getUrlCreateList1()+getApi_key()+getUrlCreateList2()+getSession_id();
-        String body = "{\"name\": \"Test_5\",\"description\": \"Descripcion_5\",\"language\": \"en\"}";
+        CreateBodyBuilder builder = new CreateBodyBuilder(getRequest_token());
+        MainBody bodyBuilder = builder.nameList(data.getNameList())
+                .descriptionList(data.getDescription())
+                .lenguajeList(data.getLanguage())
+                .build();
+        builder.prametersBody("CreateList");
+        String body = builder.getSolicitudBody();
         Response response = (Response) given().contentType(ContentType.JSON).body(body).when()
                 .post(value).then().statusCode(201).extract().response();
         //System.out.println(response.getBody().prettyPrint());

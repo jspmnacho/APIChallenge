@@ -2,9 +2,14 @@ package Body;
 
 public class CreateBodyBuilder implements BodyBuilder {
 
-    public String username;
-    public String password;
-    public String request_token;
+    private String username;
+    private String password;
+    private String request_token;
+    private String solicitudBody;
+
+    private String nameList;
+    private String descriptionList;
+    private String lenguajeList;
 
     public CreateBodyBuilder(String request_token) {
         this.request_token = request_token;
@@ -25,16 +30,70 @@ public class CreateBodyBuilder implements BodyBuilder {
         return this;
     }
 
+    public String getSolicitudBody() {
+        return solicitudBody;
+    }
+
+    public void setSolicitudBody(String solicitudBody) {
+        this.solicitudBody = solicitudBody;
+    }
+
+    public CreateBodyBuilder nameList(String val) {
+        username = val;
+        return this;
+    }
+
+    public CreateBodyBuilder descriptionList(String val) {
+        username = val;
+        return this;
+    }
+
+    public CreateBodyBuilder lenguajeList(String val) {
+        username = val;
+        return this;
+    }
+
     @Override
     public MainBody build()  {
         MainBody body = new MainBody();
         body.setUsername(this.username);
         body.setPassword(this.password);
         body.setRequest_token(this.request_token);
+        body.setNameList(this.nameList);
+        body.setDescriptionList(this.descriptionList);
+        body.setLenguajeList(this.lenguajeList);
         return body;
     }
 
-    public void prametersBody(){
+    public void prametersBody(String solicitud){
+
+        switch (solicitud){
+
+            case "ValidateToken":
+                setSolicitudBody(
+                        "{\"username\": \""+ build().getUsername()+
+                        "\",\"password\": \""+build().getPassword()+
+                        "\",\"request_token\": \""+build().getRequest_token()+"\"}");
+                break;
+
+            case "CreateSession":
+                setSolicitudBody(
+                        "{\"request_token\": \""+build().getRequest_token()+"\"}");
+                break;
+
+            case "CreateList":
+                setSolicitudBody(
+                        "{\"name\": \""+ build().getNameList()+
+                        "\",\"description\": \""+build().getDescriptionList()+
+                        "\",\"language\": \""+build().getLenguajeList()+"\"}");
+                break;
+
+            default: {
+
+                System.out.println("Opcion incorrecta");
+
+            }
+        }
 
     }
 
