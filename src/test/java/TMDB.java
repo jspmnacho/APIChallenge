@@ -30,6 +30,13 @@ public class TMDB {
     public void postCreateList(){
         Validate validateToken = new Validate();
         validateToken.CreateList();
+        //Datos Nulos ??
+    }
+
+    @Test
+    public void getDetailsList(){
+        Validate validateToken = new Validate();
+        validateToken.CreateList();
     }
 
 }
