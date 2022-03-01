@@ -31,7 +31,6 @@ public class RequestToken extends Url{
         Url url = new Url();
         Data data = new Data();
         setApi_key(data.getApi_key());
-        String value = url.getUrlToken();
         String value = url.getUrlToken()+getApi_key();
         ValidatableResponse response = given().when().get(value).then().log().body()
                 .and().statusCode(200);
