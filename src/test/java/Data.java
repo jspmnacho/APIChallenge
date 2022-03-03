@@ -13,10 +13,21 @@ public class Data {
     private String urlCreateSession;
     private String urlCreateList1;
     private String urlCreateList2;
+    private String urlDeleteList;
+    private String urlApi_key;
+    private String urlAddMovie;
+    private String urlClearLIst;
+    private String urlConfirm;
+    private String urlMovieDetails;
+    private String urlRating;
 
     private String nameList;
     private String description;
     private String language;
+    private String idList;
+
+    private String idMovie;
+    private String rateMovie;
 
 
     public Data(){
@@ -36,10 +47,21 @@ public class Data {
         setUrlCreateSession(properties.getProperty("urlCreateSession"));
         setUrlCreateList1(properties.getProperty("urlCreateList1"));
         setUrlCreateList2(properties.getProperty("urlCreateList2"));
+        setUrlDeleteList(properties.getProperty("urlDeleteList"));
+        setUrlApi_key(properties.getProperty("urlApi_key"));
+        setUrlAddMovie(properties.getProperty("urlAddMovie"));
+        setUrlClearLIst(properties.getProperty("urlClearLIst"));
+        setUrlConfirm(properties.getProperty("urlConfirm"));
+        setUrlMovieDetails(properties.getProperty("urlMovieDetails"));
+        setUrlRating(properties.getProperty("urlRating"));
 
         setNameList(properties.getProperty("nameList"));
         setDescription(properties.getProperty("descriptionList"));
         setLanguage(properties.getProperty("languageList"));
+        setIdList(properties.getProperty("idList"));
+
+        setIdMovie(properties.getProperty("idMovie"));
+        setRateMovie(properties.getProperty("rateMovie"));
     }
 
     public String getApi_key() {
@@ -114,6 +136,62 @@ public class Data {
         this.urlCreateList2 = urlCreateList2;
     }
 
+    public String getUrlApi_key() {
+        return urlApi_key;
+    }
+
+    public void setUrlApi_key(String urlApi_key) {
+        this.urlApi_key = urlApi_key;
+    }
+
+    public String getUrlDeleteList() {
+        return urlDeleteList;
+    }
+
+    public void setUrlDeleteList(String urlDeleteList) {
+        this.urlDeleteList = urlDeleteList;
+    }
+
+    public String getUrlAddMovie() {
+        return urlAddMovie;
+    }
+
+    public void setUrlAddMovie(String urlAddMovie) {
+        this.urlAddMovie = urlAddMovie;
+    }
+
+    public String getUrlClearLIst() {
+        return urlClearLIst;
+    }
+
+    public void setUrlClearLIst(String urlClearLIst) {
+        this.urlClearLIst = urlClearLIst;
+    }
+
+    public String getUrlConfirm() {
+        return urlConfirm;
+    }
+
+    public void setUrlConfirm(String urlConfirm) {
+        this.urlConfirm = urlConfirm;
+    }
+
+    public String getUrlMovieDetails() {
+        return urlMovieDetails;
+    }
+
+    public void setUrlMovieDetails(String urlMovieDetails) {
+        this.urlMovieDetails = urlMovieDetails;
+    }
+
+    public String getUrlRating() {
+        return urlRating;
+    }
+
+    public void setUrlRating(String urlRating) {
+        this.urlRating = urlRating;
+    }
+
     public String getNameList() {
         return nameList;
     }
@@ -136,5 +214,29 @@ public class Data {
 
     public void setLanguage(String language) {
         this.language = language;
+    }
+
+    public String getIdList() {
+        return idList;
+    }
+
+    public void setIdList(String idList) {
+        this.idList = idList;
+    }
+
+    public String getIdMovie() {
+        return idMovie;
+    }
+
+    public void setIdMovie(String idMovie) {
+        this.idMovie = idMovie;
+    }
+
+    public String getRateMovie() {
+        return rateMovie;
+    }
+
+    public void setRateMovie(String rateMovie) {
+        this.rateMovie = rateMovie;
     }
 }

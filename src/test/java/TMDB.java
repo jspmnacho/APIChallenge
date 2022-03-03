@@ -1,41 +1,59 @@
 import org.junit.Test;
 
-import java.io.IOException;
-
-import static io.restassured.RestAssured.given;
 
 public class TMDB {
 
     @Test
     public void getRequestToken(){
-        RequestToken requestToken = new RequestToken();
-        requestToken.generarToken();
-        System.out.println(requestToken.getToken());
+        GetRequest getRequest = new GetRequest();
+        getRequest.generarToken();
     }
 
     @Test
     public void postValidateToken(){
-        Validate validateToken = new Validate();
-        validateToken.ValidateToken();
+        PostValidate postValidate = new PostValidate();
+        postValidate.ValidateToken();
     }
 
     @Test
     public void postCreateSession(){
-        Validate createSession = new Validate();
+        PostValidate createSession = new PostValidate();
         createSession.CreateSession();
-        System.out.println(createSession.getSession_id());
     }
 
     @Test
     public void postCreateList(){
-        Validate validateToken = new Validate();
-        validateToken.CreateList();
+        PostValidate postValidate = new PostValidate();
+        postValidate.CreateList();
     }
 
     @Test
-    public void getDetailsList(){
-        Validate validateToken = new Validate();
-        validateToken.CreateList();
+    public void deleteDetailsList(){
+        DeleteRequest deleteRequest = new DeleteRequest();
+        deleteRequest.deleteList();
     }
 
+    @Test
+    public void postAddMovies(){
+        PostValidate postValidate = new PostValidate();
+        postValidate.AddMovies();
+    }
+
+    @Test
+    public void postClearList(){
+        PostValidate postValidate = new PostValidate();
+        postValidate.ClearList();
+    }
+
+    @Test
+    public void getMovieDetails(){
+        GetRequest getRequest = new GetRequest();
+        getRequest.MoviesDetails();
+    }
+
+    @Test
+    public void postRateMovie(){
+        PostValidate postValidate = new PostValidate();
+        postValidate.RateMovie();
+    }
 }

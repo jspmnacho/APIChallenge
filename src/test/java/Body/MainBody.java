@@ -10,6 +10,9 @@ public class MainBody {
     public String descriptionList;
     public String lenguajeList;
 
+    private String idMovie;
+    private String rateMovie;
+
     public MainBody() {
     }
 
@@ -59,5 +62,21 @@ public class MainBody {
 
     public void setLenguajeList(String lenguajeList) {
         this.lenguajeList = lenguajeList;
+    }
+
+    public String getIdMovie() {
+        return idMovie;
+    }
+
+    public void setIdMovie(String idMovie) {
+        this.idMovie = idMovie;
+    }
+
+    public String getRateMovie() {
+        return rateMovie;
+    }
+
+    public void setRateMovie(String rateMovie) {
+        this.rateMovie = rateMovie;
     }
 }

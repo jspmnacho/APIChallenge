@@ -11,6 +11,9 @@ public class CreateBodyBuilder implements BodyBuilder {
     private String descriptionList;
     private String lenguajeList;
 
+    private String idMovie;
+    private String rateMovie;
+
     public CreateBodyBuilder(String request_token) {
         this.request_token = request_token;
     }
@@ -53,6 +56,16 @@ public class CreateBodyBuilder implements BodyBuilder {
         return this;
     }
 
+    public CreateBodyBuilder idMovie(String val) {
+        idMovie = val;
+        return this;
+    }
+
+    public CreateBodyBuilder rateMovie(String val) {
+        rateMovie = val;
+        return this;
+    }
+
     @Override
     public MainBody build()  {
         MainBody body = new MainBody();
@@ -62,6 +75,8 @@ public class CreateBodyBuilder implements BodyBuilder {
         body.setNameList(this.nameList);
         body.setDescriptionList(this.descriptionList);
         body.setLenguajeList(this.lenguajeList);
+        body.setIdMovie(this.idMovie);
+        body.setRateMovie(this.rateMovie);
         return body;
     }
 
@@ -88,10 +103,18 @@ public class CreateBodyBuilder implements BodyBuilder {
                         "\",\"language\":\""+build().getLenguajeList()+"\"}");
                 break;
 
+            case "AddMovies":
+                setSolicitudBody(
+                        "{\"media_id\": "+ build().getIdMovie()+"}");
+                break;
+
+            case "RateMovie":
+                setSolicitudBody(
+                        "{\"value\":"+build().getRateMovie()+"}");
+                break;
+
             default: {
-
                 System.out.println("Opcion incorrecta");
-
             }
         }
 
