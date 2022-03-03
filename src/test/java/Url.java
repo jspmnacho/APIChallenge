@@ -7,6 +7,14 @@ public abstract class Url {
     private String urlCreateSession;
     private String urlCreateList1;
     private String urlCreateList2;
+    private String urlDeleteList;
+    private String urlApi_key;
+    private String urlAddMovie;
+    private String urlClearLIst;
+    private String urlConfirm;
+    private String urlMovieDetails;
+    private String urlRating;
+
     Data data = new Data();
 
 
@@ -17,6 +25,14 @@ public abstract class Url {
         setUrlCreateSession(data.getUrlCreateSession());
         setUrlCreateList1(data.getUrlCreateList1());
         setUrlCreateList2(data.getUrlCreateList2());
+        setUrlDeleteList(data.getUrlDeleteList());
+        setUrlApi_key(data.getUrlApi_key());
+        setUrlAddMovie(data.getUrlAddMovie());
+        setUrlClearLIst(data.getUrlClearLIst());
+        setUrlConfirm(data.getUrlConfirm());
+        setUrlMovieDetails(data.getUrlMovieDetails());
+        setUrlRating(data.getUrlRating());
+
     }
 
     public String getUrlToken() {
@@ -57,5 +73,61 @@ public abstract class Url {
 
     public void setUrlCreateList2(String urlCreateList2) {
         this.urlCreateList2 = urlCreateList2;
+    }
+
+    public String getUrlDeleteList() {
+        return urlDeleteList;
+    }
+
+    public void setUrlDeleteList(String urlDeleteList) {
+        this.urlDeleteList = urlDeleteList;
+    }
+
+    public String getUrlApi_key() {
+        return urlApi_key;
+    }
+
+    public void setUrlApi_key(String urlApi_key) {
+        this.urlApi_key = urlApi_key;
+    }
+
+    public String getUrlAddMovie() {
+        return urlAddMovie;
+    }
+
+    public void setUrlAddMovie(String urlAddMovie) {
+        this.urlAddMovie = urlAddMovie;
+    }
+
+    public String getUrlClearLIst() {
+        return urlClearLIst;
+    }
+
+    public void setUrlClearLIst(String urlClearLIst) {
+        this.urlClearLIst = urlClearLIst;
+    }
+
+    public String getUrlConfirm() {
+        return urlConfirm;
+    }
+
+    public void setUrlConfirm(String urlConfirm) {
+        this.urlConfirm = urlConfirm;
+    }
+
+    public String getUrlMovieDetails() {
+        return urlMovieDetails;
+    }
+
+    public void setUrlMovieDetails(String urlMovieDetails) {
+        this.urlMovieDetails = urlMovieDetails;
+    }
+
+    public String getUrlRating() {
+        return urlRating;
+    }
+
+    public void setUrlRating(String urlRating) {
+        this.urlRating = urlRating;
     }
 }
