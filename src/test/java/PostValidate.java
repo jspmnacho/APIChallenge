@@ -1,7 +1,8 @@
 import Body.CreateBodyBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
-import org.junit.Assert;
+import org.testng.Assert;
+
 
 import static io.restassured.RestAssured.given;
 
@@ -81,8 +82,8 @@ public class PostValidate extends Url{
         setPassword(data.getPass());
         CreateBodyBuilder builder = new CreateBodyBuilder(getRequest_token());
         builder.username(data.getUsername())
-               .password(data.getPass())
-               .build();
+                .password(data.getPass())
+                .build();
         builder.prametersBody("ValidateToken");
         String body = builder.getSolicitudBody();
         String value = getUrlValidateToken()+getApi_key();
@@ -109,13 +110,12 @@ public class PostValidate extends Url{
         Assert.assertEquals("true", response.jsonPath().getString("success"));
         Assert.assertEquals(getSession_id(), response.jsonPath().getString("session_id"));
 
-  }
+    }
 
     public void CreateList() {
         setApi_key(data.getApi_key());
         CreateSession();
         String value = getUrlCreateList1()+getApi_key()+getUrlCreateList2()+getSession_id();
-        //System.out.println(data.getNameList()+data.getDescription()+data.getLanguage());
         CreateBodyBuilder builder = new CreateBodyBuilder(getRequest_token());
         builder.nameList(data.getNameList())
                 .descriptionList(data.getDescription())
@@ -125,6 +125,7 @@ public class PostValidate extends Url{
         String body = builder.getSolicitudBody();
         Response response = (Response) given().contentType(ContentType.JSON).body(body).when()
                 .post(value).then().statusCode(201).extract().response();
+        data.setIdList(response.jsonPath().getString("list_id"));
         Assert.assertEquals("true", response.jsonPath().getString("success"));
         Assert.assertEquals("The item/record was created successfully.", response.jsonPath()
                 .getString("status_message"));

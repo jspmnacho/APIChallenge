@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="6" total="9" passed="3" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2022-03-06T21:54:15 COT" name="Suite1" finished-at="2022-03-06T21:54:20 COT" duration-ms="4137">
+    <groups>
+      <group name="group1">
+        <method signature="TMDB.getRequestToken()[pri:0, instance:TMDB@242b836]" name="getRequestToken" class="TMDB"/>
+        <method signature="TMDB.postCreateSession()[pri:0, instance:TMDB@242b836]" name="postCreateSession" class="TMDB"/>
+        <method signature="TMDB.postValidateToken()[pri:0, instance:TMDB@242b836]" name="postValidateToken" class="TMDB"/>
+      </group> <!-- group1 -->
+    </groups>
+    <test started-at="2022-03-06T21:54:15 COT" name="Regression1" finished-at="2022-03-06T21:54:20 COT" duration-ms="4137">
+      <class name="TMDB">
+        <test-method signature="getRequestToken()[pri:0, instance:TMDB@242b836]" started-at="2022-03-06T21:54:15 COT" name="getRequestToken" finished-at="2022-03-06T21:54:17 COT" duration-ms="2051" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getRequestToken -->
+        <test-method signature="postCreateSession()[pri:0, instance:TMDB@242b836]" started-at="2022-03-06T21:54:18 COT" name="postCreateSession" finished-at="2022-03-06T21:54:19 COT" duration-ms="1185" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- postCreateSession -->
+        <test-method signature="postValidateToken()[pri:0, instance:TMDB@242b836]" started-at="2022-03-06T21:54:19 COT" name="postValidateToken" finished-at="2022-03-06T21:54:20 COT" duration-ms="815" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- postValidateToken -->
+      </class> <!-- TMDB -->
+    </test> <!-- Regression1 -->
+  </suite> <!-- Suite1 -->
+</testng-results>
