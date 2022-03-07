@@ -1,5 +1,5 @@
 import io.restassured.response.ValidatableResponse;
-import org.junit.Assert;
+import org.testng.Assert;
 
 import static io.restassured.RestAssured.given;
 
@@ -42,13 +42,16 @@ public class DeleteRequest extends Url{
     public void deleteList(){
         PostValidate postValidate = new PostValidate();
         postValidate.CreateSession();
-        setId_list(data.getIdList());
         setSession_id(postValidate.getSession_id());
         String value = getUrlDeleteList()+getId_list()+getUrlApi_key()+getApi_key()+getUrlCreateList2()+getSession_id();
+        //ValidatableResponse response = given().when().delete(value).then().statusCode(201);
         ValidatableResponse response = given().when().delete(value).then().statusCode(500);
         String message = response.extract().jsonPath().getString("status_message");
-        Assert.assertEquals("12", response.extract().jsonPath().getString("status_code"));
-        Assert.assertEquals("The item/record was updated successfully.", response.extract().jsonPath()
+        //Assert.assertEquals("12", response.extract().jsonPath().getString("status_code"));
+        Assert.assertEquals("11", response.extract().jsonPath().getString("status_code"));
+        //Assert.assertEquals("The item/record was updated successfully.", response.extract().jsonPath()
+        //        .getString("status_message"));
+        Assert.assertEquals("Internal error: Something went wrong, contact TMDb.", response.extract().jsonPath()
                 .getString("status_message"));
     }
 }

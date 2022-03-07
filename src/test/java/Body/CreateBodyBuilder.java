@@ -87,8 +87,8 @@ public class CreateBodyBuilder implements BodyBuilder {
             case "ValidateToken":
                 setSolicitudBody(
                         "{\"username\": \""+ build().getUsername()+
-                        "\",\"password\": \""+build().getPassword()+
-                        "\",\"request_token\": \""+build().getRequest_token()+"\"}");
+                                "\",\"password\": \""+build().getPassword()+
+                                "\",\"request_token\": \""+build().getRequest_token()+"\"}");
                 break;
 
             case "CreateSession":
@@ -99,8 +99,8 @@ public class CreateBodyBuilder implements BodyBuilder {
             case "CreateList":
                 setSolicitudBody(
                         "{\"name\":\""+ build().getNameList()+
-                        "\",\"description\":\""+build().getDescriptionList()+
-                        "\",\"language\":\""+build().getLenguajeList()+"\"}");
+                                "\",\"description\":\""+build().getDescriptionList()+
+                                "\",\"language\":\""+build().getLenguajeList()+"\"}");
                 break;
 
             case "AddMovies":
