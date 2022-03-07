@@ -125,7 +125,7 @@ public class PostValidate extends Url{
         String body = builder.getSolicitudBody();
         Response response = (Response) given().contentType(ContentType.JSON).body(body).when()
                 .post(value).then().statusCode(201).extract().response();
-        //data.setIdList(response.jsonPath().getString("list_id"));
+        setId_list(response.jsonPath().getString("list_id"));
         Assert.assertEquals("true", response.jsonPath().getString("success"));
         Assert.assertEquals("The item/record was created successfully.", response.jsonPath()
                 .getString("status_message"));
