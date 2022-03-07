@@ -1,59 +1,59 @@
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 
 public class TMDB {
 
-    @Test
+    @Test (groups = { "group1"})
     public void getRequestToken(){
         GetRequest getRequest = new GetRequest();
         getRequest.generarToken();
     }
 
-    @Test
+    @Test (groups = { "group1"})
     public void postValidateToken(){
         PostValidate postValidate = new PostValidate();
         postValidate.ValidateToken();
     }
 
-    @Test
+    @Test (groups = { "group1"})
     public void postCreateSession(){
         PostValidate createSession = new PostValidate();
         createSession.CreateSession();
     }
 
-    @Test
+    @Test (groups = { "group2"})
     public void postCreateList(){
         PostValidate postValidate = new PostValidate();
         postValidate.CreateList();
     }
 
-    @Test
-    public void deleteDetailsList(){
-        DeleteRequest deleteRequest = new DeleteRequest();
-        deleteRequest.deleteList();
-    }
-
-    @Test
+    @Test (groups = { "group3"})
     public void postAddMovies(){
         PostValidate postValidate = new PostValidate();
         postValidate.AddMovies();
     }
 
-    @Test
+    @Test (groups = { "group2"})
     public void postClearList(){
         PostValidate postValidate = new PostValidate();
         postValidate.ClearList();
     }
 
-    @Test
+    @Test (groups = { "group3"})
     public void getMovieDetails(){
         GetRequest getRequest = new GetRequest();
         getRequest.MoviesDetails();
     }
 
-    @Test
+    @Test (groups = { "group3"})
     public void postRateMovie(){
         PostValidate postValidate = new PostValidate();
         postValidate.RateMovie();
+    }
+
+    @Test (groups = { "group4"})
+    public void deleteDetailsList(){
+        DeleteRequest deleteRequest = new DeleteRequest();
+        deleteRequest.deleteList();
     }
 }

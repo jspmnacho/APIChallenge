@@ -1,5 +1,6 @@
 import io.restassured.response.ValidatableResponse;
-import org.junit.Assert;
+import org.testng.Assert;
+
 
 import static io.restassured.RestAssured.given;
 
@@ -37,13 +38,13 @@ public class GetRequest extends Url{
         setToken(response.extract().jsonPath().getString("request_token"));
         //System.out.println(response.extract().jsonPath().getString("success"));
         Assert.assertEquals("true", response.extract().jsonPath().getString("success"));
-   }
+    }
 
-   public void MoviesDetails(){
-       String value = getUrlMovieDetails()+data.getIdMovie()+getUrlApi_key()+getApi_key();
-       ValidatableResponse response = given().when().get(value).then().log().body()
-               .and().statusCode(200);
-       String token = response.extract().jsonPath().getString("original_title");
-       Assert.assertEquals("The Fifth Element", response.extract().jsonPath().getString("title"));
-   }
+    public void MoviesDetails(){
+        String value = getUrlMovieDetails()+data.getIdMovie()+getUrlApi_key()+getApi_key();
+        ValidatableResponse response = given().when().get(value).then().log().body()
+                .and().statusCode(200);
+        String token = response.extract().jsonPath().getString("original_title");
+        Assert.assertEquals("The Fifth Element", response.extract().jsonPath().getString("title"));
+    }
 }
