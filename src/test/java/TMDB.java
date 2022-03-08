@@ -3,7 +3,7 @@ import org.testng.annotations.Test;
 
 public class TMDB {
 
-    @Test (groups = { "group1"})
+    @Test (groups = { "group0", "group1"})
     public void getRequestToken(){
         GetRequest getRequest = new GetRequest();
         getRequest.generarToken();

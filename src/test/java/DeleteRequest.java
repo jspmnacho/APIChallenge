@@ -43,9 +43,9 @@ public class DeleteRequest extends Url{
         PostValidate postValidate = new PostValidate();
         postValidate.CreateSession();
         setSession_id(postValidate.getSession_id());
-        postValidate.CreateList();
-        setId_list(postValidate.getId_list());
-        //setId_list(data.getIdList());
+        //postValidate.CreateList();
+        //setId_list(postValidate.getId_list());
+        setId_list(data.getIdList());
         String value = getUrlDeleteList()+getId_list()+getUrlApi_key()+getApi_key()+getUrlCreateList2()+getSession_id();
         //ValidatableResponse response = given().when().delete(value).then().statusCode(201);
         ValidatableResponse response = given().when().delete(value).then().statusCode(500);
